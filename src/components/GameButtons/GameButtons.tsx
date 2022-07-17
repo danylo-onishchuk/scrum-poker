@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { CurrentGameStage } from "../../types";
+import { FC } from 'react';
+import { CurrentGameStage } from '../../types';
 
 interface Props {
   startClick: (event: any) => void;
@@ -36,4 +36,4 @@ export const GameButtons:FC<Props> = (props: any) => {
       </button>
     </div>
   );
-}
+};

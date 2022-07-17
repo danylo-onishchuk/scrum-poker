@@ -11,11 +11,11 @@ export const enum WSEvents {
   StartVote = 'startVote',
   FinishVote = 'finishVote',
   ChoosedCard = 'choosedCard',
-};
+}
 
 export const enum CurrentGameStage {
   Login = 'login',
   Preparing = 'preparing',
   Game = 'game',
   Overview = 'overview',
-};
+}

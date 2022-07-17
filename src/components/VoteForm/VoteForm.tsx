@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 interface Props {
   voteClick: (event: any) => void;
@@ -17,7 +17,7 @@ export const VoteForm:FC<Props> = (props) => {
           id="points"
         >
           {points.map(point => (
-            <option value={point}>{point}</option>
+            <option value={point} key={point}>{point}</option>
           ))}
         </select>
         <button
