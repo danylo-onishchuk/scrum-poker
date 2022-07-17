@@ -1,4 +1,10 @@
-export function VoteForm(props: any) {
+import { FC } from "react";
+
+interface Props {
+  voteClick: (event: any) => void;
+}
+
+export const VoteForm:FC<Props> = (props) => {
   const { voteClick } = props;
 
   const points = [1, 2, 3, 5, 8, 13];

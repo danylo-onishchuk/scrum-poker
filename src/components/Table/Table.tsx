@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Client } from '../types';
+import { Client } from '../../types';
 import './Table.css';
 
 interface Props {
@@ -16,7 +16,7 @@ export const BasicTable: FC<Props> = ({ clients, opacity }) => {
             {client.name}
           </div>
           <div style={{ opacity }}>
-            {client.points || 0}
+            {client.points || ''}
           </div>
           {client.ready && (
             <div>I choosed card!</div>

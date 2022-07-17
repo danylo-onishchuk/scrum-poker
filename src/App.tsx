@@ -3,14 +3,16 @@ import { w3cwebsocket as W3CWebSocket } from 'websocket';
 import { GameButtons } from './components/GameButtons/GameButtons';
 import { Login } from './components/Login/Login';
 import { BasicTable } from './components/Table/Table';
-import { Client } from './components/types';
+import { Client, CurrentGameStage } from './types';
 import { VoteForm } from './components/VoteForm/VoteForm';
-import { WSEvents } from './components/wsEvents';
+import { WSEvents } from './wsEvents';
+import { checkIfAllVoted } from './components/helpers';
 
 const client = new W3CWebSocket('wss://danylo-scrum-poker.herokuapp.com');
 
 export function App() {
   const [clients, setClients] = useState<Client[]>([]);
+  const [currentGameStage, setCurrentGameStage] = useState(CurrentGameStage.Login);
   const [pointsOpacity, setPointsOpacity] = useState(1);
 
   useEffect(() => {
@@ -39,10 +41,12 @@ export function App() {
 
         case 'startVoteFromServer':
           setPointsOpacity(0);
+          setCurrentGameStage(CurrentGameStage.Game);
           setClients(serverData);
           break;
         case 'finishVoteFromServer':
           setPointsOpacity(1);
+          setCurrentGameStage(CurrentGameStage.Overview);
           setClients(serverData);
           break;
 
@@ -58,6 +62,7 @@ export function App() {
     const name = event.target.name.value;
 
     client.send([WSEvents.Login, name]);
+    setCurrentGameStage(CurrentGameStage.Preparing);
   };
 
   const voteClick = (event: any) => {
@@ -76,29 +81,42 @@ export function App() {
     client.send([WSEvents.FinishVote, 'finishVote']);
   };
 
-  const clientsPoints = clients.map(clientOne => clientOne.points);
+  const clientsPoints = clients.map(clientOne => Number(clientOne.points));
 
-  let avaragePoint = 0;
+  let averagePoint = 0;
 
   if (clientsPoints.length > 0) {
-    avaragePoint = clientsPoints
+    averagePoint = clientsPoints
       .reduce((a, b) => (a + b)) / clientsPoints.length;
   }
 
+  const gamers = clients.filter(client => client.name !== 'anonym');
+  const allVoted = checkIfAllVoted(gamers);
+
   return (
     <div className="gameWrapper">
-      <Login loginClick={loginClick} />
-      <VoteForm voteClick={voteClick} />
-      <GameButtons
-        startClick={startClick}
-        finishClick={finishClick}
-      />
-      <BasicTable clients={clients} opacity={pointsOpacity} />
-      <div>
-        <br />
-        Avarage:
-        {avaragePoint}
-      </div>
+      {currentGameStage === CurrentGameStage.Login && (
+        <Login loginClick={loginClick} />
+      )}
+      {currentGameStage === CurrentGameStage.Game && (
+        <VoteForm voteClick={voteClick} />
+      )}
+      {currentGameStage !== CurrentGameStage.Login && (
+        <GameButtons
+          startClick={startClick}
+          finishClick={finishClick}
+          currentGameStage={currentGameStage}
+          allVoted={allVoted}
+        />
+      )}
+      <BasicTable clients={gamers} opacity={pointsOpacity} />
+      <br />
+      {currentGameStage === CurrentGameStage.Overview && (
+        <div>
+          Average:
+          {Math.round(averagePoint)}
+        </div>
+      )}
     </div>
   );
 }
