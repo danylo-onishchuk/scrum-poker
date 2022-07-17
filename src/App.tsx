@@ -6,7 +6,7 @@ import { BasicTable } from './components/Table/Table';
 import { VoteForm } from './components/VoteForm/VoteForm';
 import { WSEvents } from './components/wsEvents';
 
-const client = new W3CWebSocket('ws://danylo-scrum-poker.herokuapp.com');
+const client = new W3CWebSocket('wss://danylo-scrum-poker.herokuapp.com');
 
 export function App() {
   const [clients, setClients] = useState([]);
