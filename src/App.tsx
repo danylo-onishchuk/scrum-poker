@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { IMessageEvent, w3cwebsocket as W3CWebSocket } from 'websocket';
 import { GameButtons } from './components/GameButtons/GameButtons';
-import { checkIfAllVoted } from './components/helpers';
+import { checkIfAllVoted } from './helpers';
 import { Login } from './components/Login/Login';
 import { BasicTable } from './components/Table/Table';
 import { VoteForm } from './components/VoteForm/VoteForm';
