@@ -95,6 +95,7 @@ export function App() {
       />
       <BasicTable clients={clients} opacity={pointsOpacity} />
       <div>
+        <br />
         Avarage:
         {avaragePoint}
       </div>
