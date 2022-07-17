@@ -3,13 +3,14 @@ import { w3cwebsocket as W3CWebSocket } from 'websocket';
 import { GameButtons } from './components/GameButtons/GameButtons';
 import { Login } from './components/Login/Login';
 import { BasicTable } from './components/Table/Table';
+import { Client } from './components/types';
 import { VoteForm } from './components/VoteForm/VoteForm';
 import { WSEvents } from './components/wsEvents';
 
 const client = new W3CWebSocket('wss://danylo-scrum-poker.herokuapp.com');
 
 export function App() {
-  const [clients, setClients] = useState([]);
+  const [clients, setClients] = useState<Client[]>([]);
   const [pointsOpacity, setPointsOpacity] = useState(1);
 
   useEffect(() => {
@@ -75,6 +76,15 @@ export function App() {
     client.send([WSEvents.FinishVote, 'finishVote']);
   };
 
+  const clientsPoints = clients.map(clientOne => clientOne.points);
+
+  let avaragePoint = 0;
+
+  if (clientsPoints.length > 0) {
+    avaragePoint = clientsPoints
+      .reduce((a, b) => (a + b)) / clientsPoints.length;
+  }
+
   return (
     <div className="gameWrapper">
       <Login loginClick={loginClick} />
@@ -84,6 +94,10 @@ export function App() {
         finishClick={finishClick}
       />
       <BasicTable clients={clients} opacity={pointsOpacity} />
+      <div>
+        Avarage:
+        {avaragePoint}
+      </div>
     </div>
   );
 }
