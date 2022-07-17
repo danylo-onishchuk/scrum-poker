@@ -1,0 +1,8 @@
+.tableWrapper {
+  margin-top: 32px;
+}
+
+.clientsWrapper {
+  display: flex;
+  gap: 16px;
+}
