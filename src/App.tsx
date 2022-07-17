@@ -117,7 +117,7 @@ export function App() {
       <br />
       {currentGameStage === CurrentGameStage.Overview && (
         <div>
-          Average:
+          Average:&nbsp;
           {Math.round(averagePoint)}
         </div>
       )}
