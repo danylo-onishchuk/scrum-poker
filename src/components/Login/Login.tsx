@@ -1,4 +1,10 @@
-export function Login(props: any) {
+import { FC } from 'react';
+
+interface Props {
+  loginClick: (event: any) => void;
+}
+
+export const Login:FC<Props> = (props) => {
   const { loginClick } = props;
 
   return (

@@ -8,15 +8,13 @@ interface Props {
   allVoted: boolean;
 }
 
-export const GameButtons:FC<Props> = (props: any) => {
+export const GameButtons:FC<Props> = (props) => {
   const {
     startClick,
     finishClick,
     currentGameStage,
     allVoted,
   } = props;
-
-  console.log(allVoted);
 
   return (
     <div className="loginWrapper">

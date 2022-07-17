@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
-import { w3cwebsocket as W3CWebSocket } from 'websocket';
+import { IMessageEvent, w3cwebsocket as W3CWebSocket } from 'websocket';
 import { GameButtons } from './components/GameButtons/GameButtons';
 import { checkIfAllVoted } from './components/helpers';
 import { Login } from './components/Login/Login';
 import { BasicTable } from './components/Table/Table';
 import { VoteForm } from './components/VoteForm/VoteForm';
+import { apiEndpoint } from './constants';
 import { Client, CurrentGameStage, WSEvents } from './types';
 
-const client = new W3CWebSocket('wss://danylo-scrum-poker.herokuapp.com');
+const client = new W3CWebSocket(apiEndpoint);
 
 export function App() {
   const [clients, setClients] = useState<Client[]>([]);
   const [currentGameStage, setCurrentGameStage] = useState(
     CurrentGameStage.Login
   );
-  console.log();
-  
+
   const [pointsOpacity, setPointsOpacity] = useState(1);
 
   useEffect(() => {
@@ -23,8 +23,9 @@ export function App() {
       client.send([WSEvents.OpenConnection, 'open']);
     };
 
-    client.onmessage = (message: any) => {
-      const serverData = JSON.parse(message.data);
+    client.onmessage = (message: IMessageEvent) => {
+      const { data } = message;
+      const serverData = JSON.parse(data as string);
       const [event] = serverData;
 
       serverData.shift();
