@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/scrum-poker/static/css/main.5a7cfbfa.css",
-    "main.js": "/scrum-poker/static/js/main.d47a6c18.js",
+    "main.js": "/scrum-poker/static/js/main.e9515f13.js",
     "index.html": "/scrum-poker/index.html",
     "main.5a7cfbfa.css.map": "/scrum-poker/static/css/main.5a7cfbfa.css.map",
-    "main.d47a6c18.js.map": "/scrum-poker/static/js/main.d47a6c18.js.map"
+    "main.e9515f13.js.map": "/scrum-poker/static/js/main.e9515f13.js.map"
   },
   "entrypoints": [
     "static/css/main.5a7cfbfa.css",
-    "static/js/main.d47a6c18.js"
+    "static/js/main.e9515f13.js"
   ]
 }
