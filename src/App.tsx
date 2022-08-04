@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { GameScreen } from './components/MainGameComponents/GameScreen';
+import { GameScreen } from './components/GameComponents/GameScreen';
 import { Main } from './components/Main/Main';
 import { Register } from './components/Register/Register';
 import './App.css';
