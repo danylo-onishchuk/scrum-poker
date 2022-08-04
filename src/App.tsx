@@ -13,7 +13,7 @@ export const App: React.FC = () => (
       path="/game"  
       element={
         <Connect loginClick={() => window.close()} />
-      } 
+      }
     />
     <Route path="/game/:boardId" element={<GameScreen />} />
     <Route path="*" element={<Main />} />
