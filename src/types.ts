@@ -11,6 +11,7 @@ export const enum WSEvents {
   StartVote = 'startVote',
   FinishVote = 'finishVote',
   ChoosedCard = 'choosedCard',
+  Ping = 'ping',
 }
 
 export const enum CurrentGameStage {
