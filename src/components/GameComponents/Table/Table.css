@@ -1,0 +1,45 @@
+.tableWrapper {
+  margin-top: 32px;
+  display: flex;
+  gap: 24px;
+}
+
+.client {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100px;
+  height: 150px;
+
+  border-radius: 10px;
+  border: 2px solid rgb(39, 120, 93);
+
+  perspective: 1000px;
+}
+
+.front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 1s;
+  backface-visibility: hidden;
+  background-color: #fff;
+ }
+
+.rotate {
+  transform: rotateY(360deg);
+}
