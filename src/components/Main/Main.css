@@ -1,0 +1,10 @@
+.mainWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 90vh;
+
+  gap: 24px;
+}
+
